@@ -1,4 +1,4 @@
-var Comment=require("../model/comment");
+var Comment=require("../../model/comment");
 module.exports=require('express').Router()
 	.post("/send",function(req,res,next){
 		var comment=req.body;
@@ -27,7 +27,7 @@ module.exports=require('express').Router()
 				res.json({
 					code:0,
 					msg:'ok',
-					body:{commentId:}
+					body:{} // TODO: Fixing later
 				});
 			}
 		});

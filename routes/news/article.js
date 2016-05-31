@@ -1,4 +1,4 @@
-var Article=require("../model/article");
+var Article=require("../../model/article");
 module.exports=require('express').Router()
 	.post("/save",function(req,res,next){
 		var jsonData=req.body;
@@ -43,7 +43,7 @@ module.exports=require('express').Router()
 		var articleId=req.body.articleId;
 		Article.findOneAndUpdate(
 			{articleId:articleId},
-			{send:"yes"}
+			{send:"yes"},
 			function(err,article){
 				if(err){
 					res.json({
@@ -126,7 +126,7 @@ module.exports=require('express').Router()
 			if(err){
 				res.json({
 					code:-1,
-					msg:'err'.
+					msg:'err',
 					body:{}
 				});
 			}else if(article){
@@ -188,14 +188,16 @@ module.exports=require('express').Router()
 				Article.update({"articleId":articleId},{"appreciationsNum":num,"appreciationers":appreciationers},function(err,doc){
 					if(err){
 						res.json({
-							code:-1;
+							code:-1,
 							msg:"err",
 							body:{}
 						});
 					}else if(doc){
-						code:0,
-						msg:"ok",
-						body:{"num":num,"users":appreciationers}
+						res.json({
+							code:0,
+							msg:"ok",
+							body:{"num":num,"users":appreciationers}
+						});
 					}
 				});
 			}

@@ -18,7 +18,7 @@ app.use(session({
 	resave:false,
 	saveUninitialized:true,
 }));
-app.use(express.static(path.join(__dirname,'public'));
+app.use(express.static(path.join(__dirname,'public')));
 app.use("/user",require("./routes/news/user"));
 app.use("/image",require("./routes/news/image"));
 app.use("/article",require("./routes/news/article"));

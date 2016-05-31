@@ -1,5 +1,5 @@
 var mongoose=require('mongoose');
-var Schema=mongoose.Schema();
+var Schema=mongoose.Schema;
 module.exports=mongoose.model('comment',new Schema({
 	commentId:{
 		type:String,
@@ -12,7 +12,7 @@ module.exports=mongoose.model('comment',new Schema({
 	},
 	reviewerId:{
 		type:String,
-		required:"miss reviewerId'
+		required:'miss reviewerId'
 	},
 	content:{
 		type:String,

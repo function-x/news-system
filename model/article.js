@@ -1,5 +1,5 @@
 var mongoose=require('mongoose');
-var Schema=mongoose.Schema();
+var Schema=mongoose.Schema;
 module.exports=mongoose.model('article',new Schema({
 	articleId:{
 		type:String,
@@ -12,7 +12,7 @@ module.exports=mongoose.model('article',new Schema({
 	typeId:{
 		type:String,
 		required:'miss typeId'
-	}
+	},
 	author:{
 		type:String,
 		required:'miss authorId',
@@ -22,9 +22,9 @@ module.exports=mongoose.model('article',new Schema({
 	},
 	updateTime:{
 		type:Date,
-	}
+	},
 	visitors:{
-		type:int,
+		type:Number,
 		default:0,
 	},
 	imageId:{
@@ -36,7 +36,7 @@ module.exports=mongoose.model('article',new Schema({
 		default:"0"
 	},
 	appreciationers:{
-		type:String[],
+		type:[String],
 	},
 	comment:{
 		type:String,

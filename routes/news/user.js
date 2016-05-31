@@ -1,4 +1,4 @@
-var User=require("../model/user");
+var User=require("../../model/user");
 module.exports=require("express").Router()
 	.post("/login",function(req,res,next){
 		var username=req.body.uesrname;
@@ -31,7 +31,7 @@ module.exports=require("express").Router()
 				}else {
 					res.json({
 						code:2,
-						msg:'there is not the user'
+						msg:'there is not the user',
 						body:{}
 					});
 				}

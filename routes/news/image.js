@@ -1,4 +1,4 @@
-var Img=require("../model/image");
+var Img=require("../../model/image");
 var Buffer=require("buffer");
 module.exports=require("express").Router()
 	.post("/send",function(req,res,next){
