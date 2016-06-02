@@ -19,7 +19,7 @@ module.exports=mongoose.model('comment',new Schema({
 		required:'miss content'
 	},
 	createTime:{
-		type:String,
+		type:Date,
 		required:'miss createTime'
 	}
 }));

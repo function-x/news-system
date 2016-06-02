@@ -1,10 +1,10 @@
 var User=require("../../model/user");
 module.exports=require("express").Router()
 	.post("/login",function(req,res,next){
-		var username=req.body.uesrname;
-		var password=req.body.password;
+		var username=req.body.username;
+		var password=req.body.pwd;
 		User.findOne(
-			{username:username,},
+			{"username":username,},
 			function(err,user){
 				if(err){
 					res.json({
@@ -38,8 +38,8 @@ module.exports=require("express").Router()
 			});
 	})
 	.post("/signup",function(req,res,next){
-		var usernmae=req.body.username;
-		var pwd=req.body.usernmae;
+		var username=req.body.username;
+		var pwd=req.body.pwd;
 		if(username&&pwd){
 			new User({
 				username:username,
@@ -58,6 +58,7 @@ module.exports=require("express").Router()
 						msg:'ok',
 						body:{}
 					});
+					console.log("ok");
 				}
 			});
 			

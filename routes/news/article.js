@@ -130,6 +130,17 @@ module.exports=require('express').Router()
 					body:{}
 				});
 			}else if(article){
+				var num=article.visitors+1;
+				Article.update({articleId:artId},{"visitors":num},function(err,doc){
+					if(err){
+						console.log(err);
+						res.json({
+						code:-1,
+						msg:'err',
+						body:{}
+						});
+					}
+				});
 				res.json({
 					code:0,
 					msg:'ok',
@@ -140,7 +151,7 @@ module.exports=require('express').Router()
 	})
 	.post("/newsList",function(req,res,next){
 		var num=req.body.num;
-		var offset=req.body.offest;
+		var offset=req.body.offset;
 		var filter=req.body.filter;
 		Article.find({typeId:filter,send:"yes"},function(err,articles){
 			if(err){
@@ -150,14 +161,26 @@ module.exports=require('express').Router()
 					body:{}
 				});
 			}else if(articles){
-				var arts=sort(articles,filter,1).slice();
-				res.json({
-					code:0,
-					msg:'ok',
-					body:arts.slice(offset*num,(offset+1)*num)
-				});
+				if(offset*num<=articles.length){
+					var arts=sort(articles,filter,1).slice();
+					if((offset+1)*num>articles.length)
+						end=articles.length;
+					else
+						end=(offset+1)*num;
+					res.json({
+						code:0,
+						msg:'ok',
+						body:arts.slice(offset*num,end)
+					});
+				}else{
+					res.json({
+						code:3,
+						msg:"none",
+						body:{}
+					});
+				}
 			}
-		})
+		});
 	})
 	.post("/zan",function(req,res,next){
 		var articleId=req.body.articleId;

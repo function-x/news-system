@@ -11,7 +11,7 @@ module.exports=require('express').Router()
 			}
 		});
 		new Comment({
-			commandId:(num+1).toString(),
+			commentId:(num+1).toString(),
 			articleId:comment.articleId,
 			reviewerId:comment.reviewerId,
 			content:comment.content,
@@ -27,7 +27,7 @@ module.exports=require('express').Router()
 				res.json({
 					code:0,
 					msg:'ok',
-					body:{} // TODO: Fixing later
+					body:{commentId:(num+1).toString()} // TODO: Fixing later
 				});
 			}
 		});
@@ -35,7 +35,7 @@ module.exports=require('express').Router()
 	.post("/commentList",function(req,res,next){
 		var artId=req.body.articleId;
 		var num=req.body.num;
-		var offet=req.body.offset;
+		var offset=req.body.offset;
 		Comment.find({articleId:artId},function(err,comments){
 			if(err){
 				res.json({
@@ -44,11 +44,23 @@ module.exports=require('express').Router()
 					body:{}
 				});
 			}else if(comments){
-				res.json({
-					code:0,
-					msg:'ok',
-					body:comments.slice(offset*num,(offset+1)*num)
-				});
+				if(offset*num<=comments.length){
+					if((offset+1)*num>comments.length)
+						end=comments.length;
+					else
+						end=(offset+1)*num;
+					res.json({
+						code:0,
+						msg:'ok',
+						body:comments.slice(offset*num,end)
+					});
+				}else{
+					res.json({
+						code:3,
+						msg:"none",
+						body:{}
+					});
+				}
 			}
 		});
 	});

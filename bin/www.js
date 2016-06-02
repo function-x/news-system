@@ -1,4 +1,5 @@
 var app=require('../app');
+var express=require('express');
 var debug =require('debug')('newsSystemProto:server');
 var http=require('http');
 

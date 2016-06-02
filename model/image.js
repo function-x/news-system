@@ -3,7 +3,7 @@ var Schema=mongoose.Schema;
 module.exports=mongoose.model('image',new Schema({
 	imgId:{
 		type:String,
-		required:'miss imageId',
+		required:'miss imgId',
 		unique:true
 	},
 	image:{
