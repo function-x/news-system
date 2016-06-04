@@ -3,7 +3,6 @@ var Buffer=require("buffer").Buffer;
 module.exports=require("express").Router()
 	.post("/send",function(req,res,next){
 		var img=req.body.img;
-		console.log(img);
 		var bufImg=new Buffer(img,"base64");
 		var num=0;
 		Img.count({},function(err,ImgNum){
@@ -27,7 +26,7 @@ module.exports=require("express").Router()
 					code:0,
 					msg:'ok',
 					body:{
-						imgId:num.toString()
+						imgId:(num+1).toString()
 					}
 				});
 			}

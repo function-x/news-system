@@ -1,0 +1,248 @@
+#API
+这是有关news-system的API文档
+
+注：所有的传输方式均为post
+**********************************************************
+###user
+----------------------------------------------------------
+####signup
+######request
+	url:'/signup',
+	type:'post',
+	data:{
+			username:String,//用户名
+			pwd:String    //密码
+		}
+######respond
+	code：0,
+	msg:"ok",
+	body:{}
+
+----------------------------------------------------------
+
+####login
+###### request
+	url:"/login",
+	type:"post",
+	data:{
+			username:String,//用户名
+			pwd:String		//密码
+			}
+
+######respond
+	code：0,
+	msg:"ok",
+	body:{}
+
+----------------------------------------------------------
+###image
+----------------------------------------------------------
+####send
+######request
+	url:"/send",
+	type:"post",
+	data:{
+			img: 二进制文件//图片数据
+		}
+######respond
+	code:0,
+	msg:"ok",
+	body:{}
+
+----------------------------------------------------------
+####get
+######request
+	url:"/get".
+	type:"post",
+	data:{
+		imgId:String//图片ID
+		}
+######respond
+	code：0，
+	msg："ok",
+	body:{
+		image:二进制文件//图片数据
+		}
+
+----------------------------------------------------------
+###comment
+----------------------------------------------------------
+####send
+######request
+	url:"/send",
+	type:"post",
+	data:{
+		articleId:String,//文章ID
+		reviewerId:String,//评论者用户名
+		content:String,//内容
+		createTime:Date//时间
+		}
+
+######respond
+	code:0,
+	msg:"ok",
+	body:{
+		commentId:String
+		}
+
+----------------------------------------------------------
+####commentList
+######request
+	url:"/commentList",
+	type:"post",
+	data:{
+		articleId:String,//文章ID
+		num:Number,//获取评论数
+		offset:Number//页数偏移量
+	}
+######respond
+	code：0，
+	msg:"ok",
+	body:[comments]//具体数据看数据库
+
+----------------------------------------------------------
+####delete
+######request
+	url:"/delete",
+	type:"post",
+	data:{
+		commentId:String//评论ID
+		}
+######respond
+	code:0,
+	msg:"ok",
+	body:{}
+
+----------------------------------------------------------
+###article
+----------------------------------------------------------
+####save
+######request
+	url:"./save",
+	type:"post",
+	data:{
+			title:String,
+			typeId:String,
+			author:String,
+			content:String,
+			updateTime:Date,
+			visitors:Number,
+			imgId:String
+		}
+######respond
+	code：0,
+	msg:"ok",
+	body:{
+			articleId:String
+		}
+
+----------------------------------------------------------
+####send
+######request
+	url:"/send",
+	type:"post",
+	data:{
+			articleId:String//文章ID
+		}
+######respond
+	code:0,
+	msg:"ok",
+	body:{}
+
+----------------------------------------------------------
+####saveAndSend
+######request
+	url:"/saveAndSend",
+	type:"post",
+	data:{
+			title:String,
+			typeId:String,
+			author:String,
+			content:String,
+			updateTime:Date,
+			visitors:Number,
+			imgId:String
+	}
+######respond
+	code:0,
+	msg:"ok",
+	body:{
+			articleId:String
+		}
+
+----------------------------------------------------------
+####edit
+######request
+	url:"/edit",
+	type:"post",
+	data:{
+			title:String,
+			typeId:String,
+			author:String,
+			content:String,
+			updateTime:Date,
+			visitors:Number,
+			imgId:String
+	}
+######respond
+	code:0,
+	msg:"ok",
+	body:{}
+
+----------------------------------------------------------
+####detail
+######request
+	url:"/detail",
+	type:"post",
+	data:{
+			articleId:String
+		}
+######respond
+	code:0,
+	msg:"ok",
+	body:article//具体数据看数据库
+
+----------------------------------------------------------
+####newsList
+######request
+	url：”/newsList",
+	type:"post",
+	data:{
+			num:Number,//新闻数
+			offset:Number,//偏移页数
+			filter:String//筛选条件
+		}
+######respond
+	code：0，
+	msg:"ok",
+	body:[articles]//j具体看数据库
+
+----------------------------------------------------------
+####zan 
+######request
+	url:"/zan",
+	type:"ok",
+	data:{
+			articleId:String,//文章ID
+			userId:String//用户ID
+		}
+######respond
+	code:0,
+	msg:"ok",
+	body:{
+			num:Number,
+			users:[String]
+		}
+
+----------------------------------------------------------
+####delete
+######request
+	url:"/delete",
+	type:"post",
+	data:{
+		articleId:String
+		}
+######respond
+	code:0,
+	msg:"ok",
+	body:{}

@@ -32,7 +32,7 @@ module.exports=mongoose.model('article',new Schema({
 		default:0,
 	},
 	appreciationsNum:{
-		type:String,
+		type:Number,
 		default:"0"
 	},
 	appreciationers:{

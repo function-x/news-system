@@ -226,6 +226,24 @@ module.exports=require('express').Router()
 			}
 		});
 		
+	})
+	.post("/delete",function(req,res,next){
+		var artId=req.body.articleId;
+		Article.remove({articleId:artId},function(err){
+			if(err){
+				res.json({
+					code:-1,
+					msg:"err",
+					body:{}
+				});
+			}else{
+				res.json({
+					code:0,
+					msg:"ok",
+					body:{}
+				});
+			}
+		});
 	});
 	
 	

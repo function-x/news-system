@@ -40,28 +40,46 @@ module.exports=require("express").Router()
 	.post("/signup",function(req,res,next){
 		var username=req.body.username;
 		var pwd=req.body.pwd;
+		var user0=null;
 		if(username&&pwd){
-			new User({
-				username:username,
-				password:pwd,
-			}).save(function(err,user){
-				if(user){
-					console.log(err);
+			User.findOne({username:username},function(err,user){
+				if(err){
 					res.json({
 						code:-1,
-						msg:'err',
+						msg:"err",
 						body:{}
 					});
-				}else{
-					res.json({
-						code:0,
-						msg:'ok',
-						body:{}
-					});
-					console.log("ok");
 				}
+				else
+					user0=user;
 			});
-			
+			if(user0){
+				res.json({
+					code:3,
+					msg:"the username has existed",
+					body:{}
+				});
+			}else{
+				new User({
+					username:username,
+					password:pwd,
+				}).save(function(err,user){
+					if(user){
+						console.log(err);
+						res.json({
+							code:-1,
+							msg:'err',
+							body:{}
+						});
+					}else{
+						res.json({
+							code:0,
+							msg:'ok',
+							body:{}
+						});
+					}
+				});
+			}
 		}else{
 			res.json({
 				code:1,

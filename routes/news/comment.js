@@ -27,7 +27,7 @@ module.exports=require('express').Router()
 				res.json({
 					code:0,
 					msg:'ok',
-					body:{commentId:(num+1).toString()} // TODO: Fixing later
+					body:{commentId:(num+1).toString()} 
 				});
 			}
 		});
@@ -61,6 +61,24 @@ module.exports=require('express').Router()
 						body:{}
 					});
 				}
+			}
+		});
+	}).
+	post("./delete",function(req,res,next){
+		var cmtId=req.body.commentId;
+		Comment.remove({commentId:cmtId},function(err){
+			if(err){
+				res.json({
+					code:-1,
+					msg:"err",
+					body:{}
+				});
+			}else{
+				res.json({
+					code:0,
+					msg:"ok",
+					body:{}
+				});
 			}
 		});
 	});
